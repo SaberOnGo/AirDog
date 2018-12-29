@@ -12,6 +12,7 @@ DART formaldehyde sensor: WZ-S
 
 function:
 1 wifi connection: withs ESP8266 WIFI Module
+
 2 air qualtiy detect
 3 2.8 inch color TFT display
 4 3300 mAh lithium battery
