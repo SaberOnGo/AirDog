@@ -1,0 +1,16 @@
+---- LCD_Ctrl_Set Matches (15 in 9 files) ----
+board_AirDog_V10.c (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta)
+board_AirDog_V10.c (dev\bsp):       LCD_Ctrl_Set(SW_OPEN);
+board_AirDog_V10.h (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta);
+board_AirDog_V11.c (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta)
+board_AirDog_V11.c (dev\bsp):       LCD_Ctrl_Set(sta);
+board_AirDog_V11.c (dev\bsp):       LCD_Ctrl_Set(SW_OPEN);
+board_AirDog_V11.h (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta);
+board_AirDog_V12.c (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta)
+board_AirDog_V12.c (dev\bsp):       //LCD_Ctrl_Set(sta);
+board_AirDog_V12.h (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta);
+board_AT_V1203.c (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta)
+board_AT_V1203.c (dev\bsp):    LCD_Ctrl_Set(SW_OPEN);
+board_AT_V1203.h (dev\bsp):void LCD_Ctrl_Set(E_SW_STATE sta);
+ExtiDrv.c (dev\driver\src):                          LCD_Ctrl_Set(SW_OPEN);
+ExtiDrv.c (dev\driver\src):                 LCD_Ctrl_Set(SW_CLOSE);

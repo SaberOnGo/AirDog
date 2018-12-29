@@ -1,0 +1,2 @@
+Number	  Date-Time	                     PM2.5     PM10    HCHO  TVOC  Temp  Humi  Battery    CO2    CO    Reserved
+0-65535    Y-Mon-Day HH:MM:SS   ug/m3    ug/m3   ppb     ppb      'C         %      %         ppm    ppm   reserved

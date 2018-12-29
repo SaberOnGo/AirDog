@@ -1,0 +1,17 @@
+#gap: 0-600, 0: default: 60 seconds to save sensor data
+#action: 0-2; 0: do nothing; 1: set rtc time for only once; 2: set rtc time every time when system is powered
+#gap: 系统每隔几秒保存传感器数据,默认30秒, 将会记录在SD卡或FLASH的/sensor/目录下
+#设置时间方法: 修改好date, time时间后, 将action设置为1，即action=1, 重新开机，即可
+#FirstLcdBackLightSec: 第一次开机背光时间, 默认180秒
+#LcdBackLightSec：无动作后屏幕等待进入休眠时间, 默认45秒
+#SnsRemainRunTime: 无动作后传感器等待关闭时间, 默认5分钟(300)
+
+gap=30
+date=2018-11-30
+time=15:40:30
+action=0
+FirstLcdBackLightSec=180
+LcdBackLightSec=45
+SnsRemainRunTime=300
+product_key="5cfb355fd1c44df49db5152cb1104bb8"
+product_secret="27e232cf2d4344febbc27e6982e55706"

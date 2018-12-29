@@ -1,0 +1,36 @@
+
+T078C 000:494 SEGGER J-Link V4.96d Log File (0000ms, 0279ms total)
+T078C 000:494 DLL Compiled: Jan 29 2015 11:45:37 (0000ms, 0279ms total)
+T078C 000:494 Logging started @ 2015-11-29 11:19 (0000ms, 0279ms total)
+T078C 000:494 JLINK_SetWarnOutHandler(...) (0000ms, 0279ms total)
+T078C 000:494 JLINK_OpenEx(...)
+Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+Hardware: V8.00
+S/N: 99999993
+Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFULL  returns O.K. (0272ms, 0551ms total)
+T078C 000:766 JLINK_SetErrorOutHandler(...) (0000ms, 0551ms total)
+T078C 000:766 JLINK_ExecCommand("ProjectFile = "H:\MCU_file\MCU_File\STM32\STM Code\STM Mine\Lesson\2_Lesson_10_08\Pro\JLinkSettings.ini"", ...)  returns 0x00 (0001ms, 0552ms total)
+T078C 000:767 JLINK_ExecCommand("Device = STM32F103ZE", ...)Device "STM32F103ZE" selected.  returns 0x00 (0001ms, 0553ms total)
+T078C 000:768 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetDLLVersion()  returns 49604 (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetFirmwareString(...) (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetDLLVersion()  returns 49604 (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetCompileDateTime() (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetFirmwareString(...) (0000ms, 0553ms total)
+T078C 000:768 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0553ms total)
+T078C 000:768 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0004ms, 0557ms total)
+T078C 000:772 JLINK_SetSpeed(20000) (0002ms, 0559ms total)
+T078C 000:774 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)  returns JLINKARM_RESET_TYPE_NORMAL (0001ms, 0560ms total)
+T078C 000:775 JLINK_Reset() >0x108 TIF>Found SWD-DP with ID 0x1BA01477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF> >0x108 TIF>Found SWD-DP with ID 0x1BA01477 >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>
+ >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>Found Cortex-M3 r1p1, Little endian. -- CPU_WriteMem(4 bytes @ 0xE0002000) -- CPU_ReadMem(4 bytes @ 0xE000EDF0) -- CPU_ReadMem(4 bytes @ 0xE0002000)FPUnit: 6 code (BP) slots and 2 literal slots
+ -- CPU_ReadMem(4 bytes @ 0xE000EDFC) -- CPU_ReadMem(4 bytes @ 0xE0001000) -- CPU_WriteMem(4 bytes @ 0xE0001000) -- CPU_ReadMem(4 bytes @ 0xE000ED88) -- CPU_WriteMem(4 bytes @ 0xE000ED88) -- CPU_ReadMem(4 bytes @ 0xE000ED88) -- CPU_WriteMem(4 bytes @ 0xE000ED88) -- CPU_ReadMem(4 bytes @ 0xE00FF010)TPIU fitted. -- CPU_ReadMem(4 bytes @ 0xE00FF014)ETM fitted. -- CPU_ReadMem(4 bytes @ 0xE00FF018) -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE000EDF0) -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE000EDFC)
+ >0x35 TIF> -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE000ED0C) -- CPU is running -- CPU_ReadMem(4 bytes @ 0xE000EDF0) -- CPU is running -- CPU_ReadMem(4 bytes @ 0xE000EDF0) -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE000EDF0) -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE000EDFC) -- CPU is running -- CPU_ReadMem(4 bytes @ 0xE000EDF0) -- CPU_WriteMem(4 bytes @ 0xE0002000) -- CPU_ReadMem(4 bytes @ 0xE000EDFC) -- CPU_ReadMem(4 bytes @ 0xE0001000) (0109ms, 0669ms total)
+T078C 000:884 JLINK_GetId() >0x0D TIF> >0x21 TIF>  returns 0x1BA01477 (0002ms, 0671ms total)
+T078C 000:889 JLINK_GetFirmwareString(...) (0000ms, 0671ms total)
+T0FD0 000:889 
+  ***** Error: Connection to emulator lost! (21496ms, 22167ms total)
+T078C 155:177 JLINK_IsOpen()  returns 0x01 (0000ms, 0671ms total)
+T078C 155:204 JLINK_Close() (0000ms, 0671ms total)
+T078C 155:204  (0000ms, 0671ms total)
+T078C 155:204 Closed (0000ms, 0671ms total)
