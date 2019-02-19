@@ -1,20 +1,32 @@
 # AirDog
 AirDog is an Air Quality Detector Project.
+
 It can detect carbon dioxide(CO2) , formaldehyde, VOCs/Volatile Organic Compounds or 
+
 TVOC/Total Volatile Organic Compound, PM2.5/PM10/PM0.3, Temperature, humidity in the air.
 
 sensors: 
+
 CO2  :  Sweden SenseAir LTD, S8 0053 CO2 Sensor
+
 Formaldehyde: England DART SENSORS LTD, WZ-S Module
+
 PM2.5/PM10:  China PlantPower LTD, PMS7003, PMS7003M
+
 Temperature & Humidity: Switzerland SENSIRION LTD, SHT20 Sensor
+
 VOCs: China Winsensor LED, ZM01 IIC BUS VOCs MEMS Sensor
 
 Others:
+
 Photoresistance,  
+
 PCF8563 RTC Clock, 
+
 MCU: STM32F103RCT6(64K RAM, 256K ROM), 
+
 ETA9742 3A Switching Charger
+
 WIFI Module: ESP-8266
 
 Features/Functions:
