@@ -5,6 +5,7 @@ It can detect carbon dioxide(CO2) , formaldehyde, VOCs/Volatile Organic Compound
 
 TVOC/Total Volatile Organic Compound, PM2.5/PM10/PM0.3, Temperature, humidity in the air.
 
+
 sensors: 
 
 CO2  :  Sweden SenseAir LTD, S8 0053 CO2 Sensor
@@ -15,7 +16,8 @@ PM2.5/PM10:  China PlantPower LTD, PMS7003, PMS7003M
 
 Temperature & Humidity: Switzerland SENSIRION LTD, SHT20 Sensor
 
-VOCs: China Winsensor LED, ZM01 IIC BUS VOCs MEMS Sensor
+VOCs: China Winsensor LTD, ZM01 IIC BUS VOCs MEMS Sensor
+
 
 Others:
 
@@ -29,37 +31,38 @@ ETA9742 3A Switching Charger
 
 WIFI Module: ESP-8266
 
+
 Features/Functions:
 
-1   High-precision imported sensors: PM2.5, PM10, CO2, HCHO, VOC, temperature and humidity, etc.
+1    High-precision imported sensors: PM2.5, PM10, CO2, HCHO, VOC, temperature and humidity, etc.
 
-2   The system is configured with multiple sensors, including illumination, vibration, and PCB temperature detection.
+2    The system is configured with multiple sensors, including illumination, vibration, and PCB temperature detection.
 
-3   2.8-inch color TFT display with color screen display.
+3    2.8-inch color TFT display with color screen display.
 
-4   Touch sensing, vibration sensing, light sensing, intelligent adjustment of screen brightness at night.
+4    Touch sensing, vibration sensing, light sensing, intelligent adjustment of screen brightness at night.
 
-5   In addition to the 5V USB power supply, it is equipped with a large-capacity imported lithium battery to provide air movement for air quality detection.
+5    In addition to the 5V USB power supply, it is equipped with a large-capacity imported lithium battery to provide air movement for air quality detection.
 
-6   Built-in SD card, standard configuration 2G SD card, can store 5 years of sensor data, support up to 32GB SD card.
+6    Built-in SD card, standard configuration 2G SD card, can store 5 years of sensor data, support up to 32GB SD card.
 
-7   can connect to the computer to view sensor data, virtual U disk supports FAT, FAT32, exFAT file system.
+7    can connect to the computer to view sensor data, virtual U disk supports FAT, FAT32, exFAT file system.
 
-8   Support online upgrade firmware, support remote firmware upgrade.
+8    Support online upgrade firmware, support remote firmware upgrade.
 
-9   equipped with WIFI module, support network control function
+9    equipped with WIFI module, support network control function
 
-10  Optional GPRS module, can be placed outdoors, remote detection in the deep forest.
+10   Optional GPRS module, can be placed outdoors, remote detection in the deep forest.
 
-11  Configure the mobile app, including IOS and Android versions.
+11   Configure the mobile app, including IOS and Android versions.
 
-12  Supports up to 2A fast charging function to quickly fill the battery.
+12   Supports up to 2A fast charging function to quickly fill the battery.
 
-13  Keep the external interface and connect other sensors such as oxygen, carbon monoxide, etc.
+13   Keep the external interface and connect other sensors such as oxygen, carbon monoxide, etc.
 
-14  Scrubed acrylic shell, so addictive ^-^.
+14   Scrubed acrylic shell, so addictive ^-^.
 
-15  black gold plated PCB, noble and generous, lead-free solder, components are RoHS compliant.
+15   black gold plated PCB, noble and generous, lead-free solder, components are RoHS compliant.
 
 
 resources:
