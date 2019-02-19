@@ -19,11 +19,17 @@ WIFI Module: ESP-8266
 
 Features/Functions:
 1   High-precision imported sensors: PM2.5, PM10, CO2, HCHO, VOC, temperature and humidity, etc.
+
 2   The system is configured with multiple sensors, including illumination, vibration, and PCB temperature detection.
+
 3   2.8-inch color TFT display with color screen display.
+
 4   Touch sensing, vibration sensing, light sensing, intelligent adjustment of screen brightness at night.
+
 5   In addition to the 5V USB power supply, it is equipped with a large-capacity imported lithium battery to provide air movement for air quality detection.
+
 6   Built-in SD card, standard configuration 2G SD card, can store 5 years of sensor data, support up to 32GB SD card.
+
 7   can connect to the computer to view sensor data, virtual U disk supports FAT, FAT32, exFAT file system.
 
 8   Support online upgrade firmware, support remote firmware upgrade.
@@ -41,6 +47,7 @@ ESP8266(ie: ai-thinker ESP-12F, esp8266 with 32Mbit SPI FLASH)
 http://wiki.ai-thinker.com/esp8266/docs
 
 ESP8266 SDK and resources on Espressif:
+
 https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
 
 
