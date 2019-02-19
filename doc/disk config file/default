@@ -1,2 +1,4 @@
 font=1
 wifi_en=1
+dbg_file=1
+DiskFreeSize=1024
