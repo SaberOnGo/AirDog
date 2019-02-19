@@ -18,6 +18,7 @@ ETA9742 3A Switching Charger
 WIFI Module: ESP-8266
 
 Features/Functions:
+
 1   High-precision imported sensors: PM2.5, PM10, CO2, HCHO, VOC, temperature and humidity, etc.
 
 2   The system is configured with multiple sensors, including illumination, vibration, and PCB temperature detection.
@@ -33,21 +34,35 @@ Features/Functions:
 7   can connect to the computer to view sensor data, virtual U disk supports FAT, FAT32, exFAT file system.
 
 8   Support online upgrade firmware, support remote firmware upgrade.
+
 9   equipped with WIFI module, support network control function
+
 10  Optional GPRS module, can be placed outdoors, remote detection in the deep forest.
+
 11  Configure the mobile app, including IOS and Android versions.
+
 12  Supports up to 2A fast charging function to quickly fill the battery.
+
 13  Keep the external interface and connect other sensors such as oxygen, carbon monoxide, etc.
+
 14  Scrubed acrylic shell, so addictive ^-^.
+
 15  black gold plated PCB, noble and generous, lead-free solder, components are RoHS compliant.
 
+
 resources:
+
 1 WIFI: 
+
+my ESP8266 sdk in: https://github.com/SaberOnGo/ESP8266-AIRDOG
+
 ESP8266(ie: ai-thinker ESP-12F, esp8266 with 32Mbit SPI FLASH)
+
 http://wiki.ai-thinker.com/esp8266/docs
 
 ESP8266 SDK and resources on Espressif:
 
 https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
+
 
 
