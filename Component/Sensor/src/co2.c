@@ -12,7 +12,8 @@
 
 
 #if CO2_DBG_EN
-#define CO2_DBG(fmt, ...)    os_printf(fmt, ##__VA_ARGS__)
+//#define CO2_DBG(fmt, ...)    os_printf(fmt, ##__VA_ARGS__)
+#define CO2_DBG    dbg_print_detail
 #else
 #define CO2_DBG(...)
 #endif
@@ -531,6 +532,7 @@ uint8_t  CO2_PacketCheck(void)
 
        // 长度检查
 	if(co2_rx_cnt < cmdLen) 
+	
 	{
 	     CO2_DBG("rx co2 buf len err: cmdLen = %d, realLen = %d\n", 
 	   	           respMap[(uint8_t)tx_co2_cmd_type].cmdLen, co2_rx_cnt);

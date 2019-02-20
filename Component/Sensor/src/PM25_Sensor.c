@@ -6,7 +6,8 @@
 #include "sw_uart2.h"
 
 #if PM25_DBG_EN
-#define PM25_DBG(fmt, ...)    os_printf(fmt, ##__VA_ARGS__)
+//#define PM25_DBG(fmt, ...)    os_printf(fmt, ##__VA_ARGS__)
+#define PM25_DBG    dbg_print_detail
 #else
 #define PM25_DBG(...)
 #endif

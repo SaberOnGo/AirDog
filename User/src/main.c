@@ -5,11 +5,15 @@
 #include "TimerManager.h"
 #include "gizwits_port.h"
 #include "key_drv.h"
+#include "board_version.h"
+
+extern void Sensor_SetHCHOCaliBase(void);
 
 int  main(void)
 {
       //uint16_t key_result;
-      
+       //uint32_t pressed_time;
+       
        AppInit();
        while(1)
 	{
@@ -32,10 +36,12 @@ int  main(void)
 #endif
 
               }
-              if(flag100ms)
-              {
-                    flag100ms = 0;
-              }
 
+              if(KEY_INPUT == 0 )  
+              {
+                      App_StartCO2BackgndCali();
+                      Sensor_SetHCHOCaliBase();
+                      while(!KEY_INPUT);
+              }
 	}
 }

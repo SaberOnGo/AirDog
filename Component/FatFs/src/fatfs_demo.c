@@ -74,7 +74,8 @@ FRESULT exf_getfree(uint8_t * drv, uint32_t * total, uint32_t *free)
 	FATFS * fs1;
 	FRESULT res;
     uint32_t fre_clust = 0, fre_sect = 0, tot_sect = 0;
-	
+
+     *free = 0;
     //得到磁盘信息及空闲簇数量
     res = f_getfree((const TCHAR*)drv, (DWORD*)&fre_clust, &fs1);
     if(res == FR_OK)
@@ -106,7 +107,7 @@ FRESULT exf_getfree(uint8_t * drv, uint32_t * total, uint32_t *free)
 
 // 文件的第0行显示传感器名称字符串
 const char SensorNameItem[] = 
-"Number    Date-Time              PM2.5    PM10     HCHO  TVOC   Temp   Humi   Battery   CO2    CO     reserved\r\n";
+"Number    Date-Time       PM2.5    PM10     HCHO  TVOC   Temp   Humi   Battery   CO2    CO     reserved\r\n";
 
 // 文件的第1行显示传感器数据单位
 const char SensorUnitItem[] = 
@@ -533,6 +534,7 @@ static void ReadDefaultConfig(void)
 	  {
 	           fat_printf("buf = %s\n", buf);
 
+                 // 是否写入字库
                  if(! StringToInt(buf, "font=", 5, 0, 10, &p, &n))
                  {
                        // 改写n 值
@@ -549,7 +551,18 @@ static void ReadDefaultConfig(void)
 				   f_sync(&fileFIL);
          	          }
                  }
-              
+
+                 // 是否将调试信息写入文件
+                 if(! StringToInt(buf, "dbg_file=", 9, 0, 10, &p, &n))
+                 {
+			    if(n) {  cfgVar_DbgWritten = n;  }
+                 }
+
+                 // 文件系统需要保留的最小空闲空间, unit: KB
+                 if(! StringToInt(buf, "DiskFreeSize=", 13, 0, 65535, &p, &n))
+                 {
+			    if(n) {  cfgVar_DiskFreeSize  = n;  }
+                 }
 	     }while(0);
 	}while(0); 
 	
@@ -571,7 +584,7 @@ E_RESULT FILE_Write(char * file_name, char write_buf[])
 	UINT bw;  // 输出参数, 写入后长度 
 
    FILE_SetLock(1);
-   res = FILE_Open(&sdFIL, file_name);
+   res = FILE_Open(&fileFIL, file_name);
    if(res)
    {
          fat_printf("file open failed: %s  res = %d \r\n",  file_name,  res);
@@ -579,13 +592,13 @@ E_RESULT FILE_Write(char * file_name, char write_buf[])
          return APP_FAILED;
    }
    
-   res = f_lseek(&sdFIL,  sdFIL.fsize); // 文件指针移到字符串结束位置
-   f_sync(&sdFIL);
+   res = f_lseek(&fileFIL,  fileFIL.fsize); // 文件指针移到字符串结束位置
+   f_sync(&fileFIL);
    fat_printf("f_lseek res = %d, fptr = %ld, fsize = %ld\n", res,  sdFIL.fptr,  sdFIL.fsize);
    len = os_strlen(write_buf);
-   res = f_write(&sdFIL, write_buf, len, &bw);
-   f_sync(&sdFIL);
-   f_close(&sdFIL);
+   res = f_write(&fileFIL, write_buf, len, &bw);
+   f_sync(&fileFIL);
+   f_close(&fileFIL);
    
    FILE_SetLock(0);
    fat_printf("f_write: %s  res = %d, len = %d, bw = %d\n", file_name, res, len, bw);
@@ -846,7 +859,18 @@ void FILE_FormatDisk(FATFS * disk,  const char * diskPath,  uint8_t format)
 	}	
 }
 
+// 获取磁盘空闲大小
+// 参数: 0 -N,  0: 表示磁盘0
+//返回值: 磁盘空闲大小: 单位: KB
+uint16_t FILE_GetDiskFree(uint8_t disk_index)
+{
+        uint32_t total = 0, free = 0;
+        uint8_t diskPath[3] = {0, 0, 0};
 
+        os_snprintf(diskPath,  3,  "%d:", disk_index);
+        if(exf_getfree((uint8_t *)"0:", &total, &free) == FR_OK){}
+        return free;
+}
 
 // 得到传感器文件中包含的数据总条目数
 uint32_t FILE_GetSensorTotalItems(void)

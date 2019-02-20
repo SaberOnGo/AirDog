@@ -13,7 +13,7 @@ int32_t flash_initialize(void)
 {
 	if (sfud_init() == SFUD_SUCCESS) 
 	{
-       os_printf("init sfud success\r\n");
+          os_printf("init sfud success\r\n");
 	   return 0;
 	}
 	else
@@ -182,7 +182,7 @@ uint32_t spi_flash_capacity = FL_SIZE_KB(4096);   // W25Q16
 void flash_set_total_capacity(uint32_t capacity)
 {
       spi_flash_capacity = capacity;
-      os_printf("flash capacity = %ld B\r\n", capacity);
+      //os_printf("flash capacity = %ld B\r\n", capacity);
 }
 uint32_t flash_get_total_capacity(void)
 {

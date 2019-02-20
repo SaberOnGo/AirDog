@@ -23,9 +23,7 @@ typedef enum
 
 typedef enum
 {
-     E_INFO_Relay_Ctrl = EVENT_Relay_Ctrl,
-     E_INFO_LED0_Ctrl  = EVENT_LED0_Ctrl,
-     E_INFO_CO2,
+     E_INFO_CO2 = 0,
      E_INFO_temp,
      E_INFO_hcho_ppb,
      E_INFO_humi,

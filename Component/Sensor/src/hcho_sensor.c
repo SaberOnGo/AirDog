@@ -112,8 +112,14 @@ static SYS_RESULT  HCHOBufCheck(uint8_t * buf, uint16_t len)
         return SYS_FAILED;
 }
 
+void Sensor_SetHCHOCaliBase(void)
+{
+       hcho_sns.cali_ppb = hcho_sns.new_ppb;
+}
 static void TimerHCHO_CallBack(void * arg)
 {
+        uint16_t ppb_now;
+        
         if(HCHOBufCheck(Rx.buf,  Rx.rx_len) != SYS_SUCCESS)
         {
                  return;
@@ -123,7 +129,9 @@ static void TimerHCHO_CallBack(void * arg)
         HCHO_DBG("HCHO = %01d.%03d mg/m3 , tick = %ld \r\n", 
                                hcho_sns.new_ppb % 10000 / 1000,
                                hcho_sns.new_ppb % 1000, os_get_tick());
-        SDRR_SaveSensorPoint(SENSOR_HCHO, &hcho_sns.new_ppb);
+        ppb_now = (hcho_sns.new_ppb > hcho_sns.cali_ppb) ? 
+                                 (hcho_sns.new_ppb - hcho_sns.cali_ppb) : (0);
+        SDRR_SaveSensorPoint(SENSOR_HCHO, &ppb_now);
         do
 	{
 	      static u8 first_time = 1;
@@ -132,7 +140,7 @@ static void TimerHCHO_CallBack(void * arg)
 	            first_time = 0;
 	            SnsGUI_ClearCircle(CIRCLE_HCHO);
 	      }
-             SnsGUI_DisplayHCHO(hcho_sns.new_ppb);
+             SnsGUI_DisplayHCHO(ppb_now);
 	}while(0);
 }
 

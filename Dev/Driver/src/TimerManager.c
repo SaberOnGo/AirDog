@@ -5,9 +5,8 @@
 #include "GlobalDef.h"
 
 uint8_t volatile flag10ms = 0;
-uint8_t volatile ms_cnt = 0;
-uint8_t volatile flag100ms = 0;
 uint8_t volatile flag_switch = 0;
+
 void SysTick_Init(void)
 {
     if(SysTick_Config(SystemCoreClock / (1000 / OS_PER_TICK_MS)))  // 10 ms 中断一次
@@ -27,20 +26,9 @@ void SysTick_Increment(void)
 {
    sSysTick++;
    flag10ms = 1;  
-   
-   //key_result = key_read();
-   //if( (key_result >> 8) != N_key)
-   //{
-   //      key_process(key_result);
-  // }
+
    
    flag_switch ^= 1;
-   ms_cnt++;
-   if(ms_cnt > 3)
-   {
-         ms_cnt = 0;
-         flag100ms = 1;
-   }
 }
 #endif
 

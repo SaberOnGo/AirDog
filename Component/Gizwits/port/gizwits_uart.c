@@ -89,32 +89,6 @@ static E_RESULT  FLASH_SAVE CMDFN_ParseCtrlDev(void * msg)
 
         switch(type)
         {
-                case  E_INFO_Relay_Ctrl:
-                {
-                        if(info)
-                      {
-                                GIZ_PRINT("set LED1 = 1\r\n");
-                                //LED1(1);
-                       }
-                        else
-                        {
-                                GIZ_PRINT("set LED1 = 0\r\n");
-                                //LED1(0);
-                        }
-                }break;
-                case E_INFO_LED0_Ctrl:
-                {
-                       if(info)
-                      {
-                                GIZ_PRINT("set LED0 = 1\r\n");
-                                //LED0(1);
-                       }
-                        else
-                        {
-                                GIZ_PRINT("set LED0 = 0\r\n");
-                                //LED0(0);
-                        }
-                }break;
                 case E_INFO_CO2:
                 {
 

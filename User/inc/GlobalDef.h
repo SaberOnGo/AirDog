@@ -19,11 +19,14 @@
 
 
 
+void DbgInfo_Print(char * fmt,  ...);
 
-
+#define dbg_print_detail(fmt, ...)  { DbgInfo_Print(fmt, ##__VA_ARGS__); \
+/*DbgInfo_Print("%s %d\r\n",  __FILE__,  __LINE__); */}
 
 #if 1
-#define os_printf(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+//#define os_printf(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+#define os_printf    dbg_print_detail
 #else
 #define os_printf(...)
 #endif
@@ -34,11 +37,11 @@
 
 // 模块调试使能开关, 1: 使能; 0: 禁止
 #define DEBUG_ADC_EN      0    // ADC 调试
-#define BAT_DEBUG_EN      0    // 电池电量调试
-#define EXTI_DEBUG_EN     1    // 外部中断调试使能(1), 禁止(0)
+#define BAT_DEBUG_EN      1    // 电池电量调试
+#define EXTI_DEBUG_EN     0    // 外部中断调试使能(1), 禁止(0)
 #define RTC_DEBUG_EN      0
 #define DEBUG_KEY_EN      0
-#define FAT_DEBUG_EN     1    // 文件操作调试使能
+#define FAT_DEBUG_EN      1    // 文件操作调试使能
 #define SDRR_DBG_EN        0    
 #define SYSTEM_DBG_EN     0    // 系统调试输出
 #define BEEP_DBG_EN            0   // 蜂鸣器调试使能
@@ -78,7 +81,7 @@
 #define FONT_IN_SPI_FLASH       1  // use font lib saved outside, in spi flash
 #define FONT_IN_ROM_FLASH    2   // use font lib saved in MCU ROM, if use this, rom will be used more than 35KB
 
-#define UGUI_USE_FONT  FONT_IN_ROM_FLASH
+#define UGUI_USE_FONT   FONT_IN_SPI_FLASH
 
 
 extern void print_info(char * info, u8 * file, u32 line);

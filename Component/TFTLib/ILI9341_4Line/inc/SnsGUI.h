@@ -60,6 +60,8 @@ typedef enum
        TIP_WIFI_Reset    = 3, 
        TIP_WIFI_Failed   = 4,
        TIP_WIFI_Erase    = 5,
+       TIP_WIFI_ReadyConn = 6,
+       TIP_WIFI_ReadyReset = 7, 
        TIP_WIFI_Error,
 }WifiTipType;
 
@@ -69,6 +71,7 @@ typedef enum
       TIP_CO2_CALI_OK        = 1,  // Cali OK
       TIP_CO2_CALI_FAILED = 2, // Cali Failed
       TIP_CO2_CALI_Erase    = 3,
+      TIP_CO2_CALI_Ready   = 4,
       TIP_CO2_End,
 }CO2TipType;
 

@@ -9,7 +9,8 @@
 #include "FONT_API.h"
 
 #if   DEBUG_ADC_EN
-#define ADC_DEBUG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+//#define ADC_DEBUG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+#define  ADC_DEBUG  dbg_print_detail
 #else
 #define ADC_DEBUG(...)
 #endif
@@ -178,8 +179,15 @@ uint16_t adc_get_volt_value(uint16_t adc_val)
 // 计算电池电压
 // 参数: uint16_t volt: ADC测量的电压, 单位: mV
 // 返回值: uint16_t 电池电压: 单位: mV
-#define  adc_get_bat_volt(volt)   ((uint16_t)((double)630 * (volt) / 470))  //((uint16_t)(( 635.0 / 470.0) * (volt)))
+//#define  adc_get_bat_volt(volt)   ((uint16_t)(((double)630.0 * (volt)) / 470.0))  //((uint16_t)(( 635.0 / 470.0) * (volt)))
 
+uint16_t adc_get_bat_volt(uint16_t volt)
+{
+       uint16_t mV;
+
+       mV = ((double)630) * volt / 470.0;
+       return mV;
+}
 static uint8_t  first_core_temp_save = E_FALSE;
 static uint16_t first_core_temp;
 

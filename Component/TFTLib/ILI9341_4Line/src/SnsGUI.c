@@ -871,6 +871,7 @@ void SnsGUI_DisplayVersion(char * version, char * date, char * time)
 	UG_PutString(118, 85,       "AIR DOG");
 	UG_PutString(82, 110,       version);
 	UG_PutString(94, 135,    date);
+	UG_PutString(94, 160,   time);
 #endif	
 }
 

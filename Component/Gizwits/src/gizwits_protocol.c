@@ -139,55 +139,6 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoint2Event(gizwitsIssued_t *issuedData, 
         }
     }
     
-    if(0x01 == issuedData->attrFlags.flagRelay_Ctrl)
-    {
-        info->event[info->num] = EVENT_Relay_Ctrl;
-        info->num++;
-        dataPoints->valueRelay_Ctrl = gizStandardDecompressionValue(Relay_Ctrl_BYTEOFFSET,Relay_Ctrl_BITOFFSET,Relay_Ctrl_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagLED0_Ctrl)
-    {
-        info->event[info->num] = EVENT_LED0_Ctrl;
-        info->num++;
-        dataPoints->valueLED0_Ctrl = gizStandardDecompressionValue(LED0_Ctrl_BYTEOFFSET,LED0_Ctrl_BITOFFSET,LED0_Ctrl_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagLCD_Power_En)
-    {
-        info->event[info->num] = EVENT_LCD_Power_En;
-        info->num++;
-        dataPoints->valueLCD_Power_En = gizStandardDecompressionValue(LCD_Power_En_BYTEOFFSET,LCD_Power_En_BITOFFSET,LCD_Power_En_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagSns_Power_En)
-    {
-        info->event[info->num] = EVENT_Sns_Power_En;
-        info->num++;
-        dataPoints->valueSns_Power_En = gizStandardDecompressionValue(Sns_Power_En_BYTEOFFSET,Sns_Power_En_BITOFFSET,Sns_Power_En_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagWifi_Power_En)
-    {
-        info->event[info->num] = EVENT_Wifi_Power_En;
-        info->num++;
-        dataPoints->valueWifi_Power_En = gizStandardDecompressionValue(Wifi_Power_En_BYTEOFFSET,Wifi_Power_En_BITOFFSET,Wifi_Power_En_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-        
-    if(0x01 == issuedData->attrFlags.flagpower_mode)
-    {
-        info->event[info->num] = EVENT_power_mode;
-        info->num++;
-        dataPoints->valuepower_mode = gizX2Y(power_mode_RATIO,  power_mode_ADDITION, issuedData->attrVals.valuepower_mode); 
-    }
-        
-    if(0x01 == issuedData->attrFlags.flaglang_select)
-    {
-        info->event[info->num] = EVENT_lang_select;
-        info->num++;
-        dataPoints->valuelang_select = gizX2Y(lang_select_RATIO,  lang_select_ADDITION, issuedData->attrVals.valuelang_select); 
-    }
         
     if(0x01 == issuedData->attrFlags.flagsns_cal)
     {
@@ -226,41 +177,6 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
         return -1;
     }
     currentTime = gizGetTimerCount();
-    if(last->valueRelay_Ctrl != cur->valueRelay_Ctrl)
-    {
-        GIZWITS_LOG("valueRelay_Ctrl Changed\n");
-        ret = 1;
-    }
-    if(last->valueLED0_Ctrl != cur->valueLED0_Ctrl)
-    {
-        GIZWITS_LOG("valueLED0_Ctrl Changed\n");
-        ret = 1;
-    }
-    if(last->valueLCD_Power_En != cur->valueLCD_Power_En)
-    {
-        GIZWITS_LOG("valueLCD_Power_En Changed\n");
-        ret = 1;
-    }
-    if(last->valueSns_Power_En != cur->valueSns_Power_En)
-    {
-        GIZWITS_LOG("valueSns_Power_En Changed\n");
-        ret = 1;
-    }
-    if(last->valueWifi_Power_En != cur->valueWifi_Power_En)
-    {
-        GIZWITS_LOG("valueWifi_Power_En Changed\n");
-        ret = 1;
-    }
-    if(last->valuepower_mode != cur->valuepower_mode)
-    {
-        GIZWITS_LOG("valuepower_mode Changed\n");
-        ret = 1;
-    }
-    if(last->valuelang_select != cur->valuelang_select)
-    {
-        GIZWITS_LOG("valuelang_select Changed\n");
-        ret = 1;
-    }
     if(last->valuesns_cal != cur->valuesns_cal)
     {
         GIZWITS_LOG("valuesns_cal Changed\n");
@@ -280,14 +196,6 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
             ret = 1;
         }
     }
-    if(last->valuelight_level != cur->valuelight_level)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuelight_level Changed\n");
-            ret = 1;
-        }
-    }
     if(last->valuebattery_percent != cur->valuebattery_percent)
     {
         if(currentTime - lastReportTime >= REPORT_TIME_MAX)
@@ -296,19 +204,11 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
             ret = 1;
         }
     }
-    if(last->valuecharge_state != cur->valuecharge_state)
+    if(last->valueco2_ppm != cur->valueco2_ppm)
     {
         if(currentTime - lastReportTime >= REPORT_TIME_MAX)
         {
-            GIZWITS_LOG("valuecharge_state Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valueCO2 != cur->valueCO2)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valueCO2 Changed\n");
+            GIZWITS_LOG("valueco2_ppm Changed\n");
             ret = 1;
         }
     }
@@ -352,14 +252,6 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
             ret = 1;
         }
     }
-    if(last->valueco_ppm != cur->valueco_ppm)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valueco_ppm Changed\n");
-            ret = 1;
-        }
-    }
     if(last->valuePtCnt_0p3um != cur->valuePtCnt_0p3um)
     {
         if(currentTime - lastReportTime >= REPORT_TIME_MAX)
@@ -373,86 +265,6 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
         if(currentTime - lastReportTime >= REPORT_TIME_MAX)
         {
             GIZWITS_LOG("valuePtCnt_10p0um Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valueflash_free != cur->valueflash_free)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valueflash_free Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valueflash_total != cur->valueflash_total)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valueflash_total Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valuesd_free != cur->valuesd_free)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuesd_free Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valuesd_total != cur->valuesd_total)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuesd_total Changed\n");
-            ret = 1;
-        }
-    }
-    if(last->valuecore_temp != cur->valuecore_temp)
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuecore_temp Changed\n");
-            ret = 1;
-        }
-    }
-    if(0 != memcmp((uint8_t *)&last->valuefault_info,(uint8_t *)&cur->valuefault_info,sizeof(last->valuefault_info)))
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuefault_info Changed\n");
-            ret = 1;
-        }
-    }
-    if(0 != memcmp((uint8_t *)&last->valuesoft_version,(uint8_t *)&cur->valuesoft_version,sizeof(last->valuesoft_version)))
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuesoft_version Changed\n");
-            ret = 1;
-        }
-    }
-    if(0 != memcmp((uint8_t *)&last->valuewifi_version,(uint8_t *)&cur->valuewifi_version,sizeof(last->valuewifi_version)))
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuewifi_version Changed\n");
-            ret = 1;
-        }
-    }
-    if(0 != memcmp((uint8_t *)&last->valuepcb_version,(uint8_t *)&cur->valuepcb_version,sizeof(last->valuepcb_version)))
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuepcb_version Changed\n");
-            ret = 1;
-        }
-    }
-    if(0 != memcmp((uint8_t *)&last->valuesn,(uint8_t *)&cur->valuesn,sizeof(last->valuesn)))
-    {
-        if(currentTime - lastReportTime >= REPORT_TIME_MAX)
-        {
-            GIZWITS_LOG("valuesn Changed\n");
             ret = 1;
         }
     }
@@ -480,46 +292,24 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoints2ReportData(dataPoint_t *dataPoints
         return -1;
     }
 
-    gizMemset((uint8_t *)devStatusPtr->wBitBuf,0,sizeof(devStatusPtr->wBitBuf));
 
-    gizStandardCompressValue(Relay_Ctrl_BYTEOFFSET,Relay_Ctrl_BITOFFSET,Relay_Ctrl_LEN,(uint8_t *)devStatusPtr,dataPoints->valueRelay_Ctrl);
-    gizStandardCompressValue(LED0_Ctrl_BYTEOFFSET,LED0_Ctrl_BITOFFSET,LED0_Ctrl_LEN,(uint8_t *)devStatusPtr,dataPoints->valueLED0_Ctrl);
-    gizStandardCompressValue(LCD_Power_En_BYTEOFFSET,LCD_Power_En_BITOFFSET,LCD_Power_En_LEN,(uint8_t *)devStatusPtr,dataPoints->valueLCD_Power_En);
-    gizStandardCompressValue(Sns_Power_En_BYTEOFFSET,Sns_Power_En_BITOFFSET,Sns_Power_En_LEN,(uint8_t *)devStatusPtr,dataPoints->valueSns_Power_En);
-    gizStandardCompressValue(Wifi_Power_En_BYTEOFFSET,Wifi_Power_En_BITOFFSET,Wifi_Power_En_LEN,(uint8_t *)devStatusPtr,dataPoints->valueWifi_Power_En);
-    gizByteOrderExchange((uint8_t *)devStatusPtr->wBitBuf,sizeof(devStatusPtr->wBitBuf));
 
-    devStatusPtr->valuepower_mode = gizY2X(power_mode_RATIO,  power_mode_ADDITION, dataPoints->valuepower_mode); 
-    devStatusPtr->valuelang_select = gizY2X(lang_select_RATIO,  lang_select_ADDITION, dataPoints->valuelang_select); 
     devStatusPtr->valuesns_cal = gizY2X(sns_cal_RATIO,  sns_cal_ADDITION, dataPoints->valuesns_cal); 
     devStatusPtr->valuehumi = gizY2X(humi_RATIO,  humi_ADDITION, dataPoints->valuehumi); 
-    devStatusPtr->valuelight_level = gizY2X(light_level_RATIO,  light_level_ADDITION, dataPoints->valuelight_level); 
     devStatusPtr->valuebattery_percent = gizY2X(battery_percent_RATIO,  battery_percent_ADDITION, dataPoints->valuebattery_percent); 
-    devStatusPtr->valuecharge_state = gizY2X(charge_state_RATIO,  charge_state_ADDITION, dataPoints->valuecharge_state); 
 
-    devStatusPtr->valueCO2 = exchangeBytes(gizY2X(CO2_RATIO,  CO2_ADDITION, dataPoints->valueCO2)); 
+    devStatusPtr->valueco2_ppm = exchangeBytes(gizY2X(co2_ppm_RATIO,  co2_ppm_ADDITION, dataPoints->valueco2_ppm)); 
     devStatusPtr->valuehcho_ppb = exchangeBytes(gizY2X(hcho_ppb_RATIO,  hcho_ppb_ADDITION, dataPoints->valuehcho_ppb)); 
     devStatusPtr->valuetvoc_ppb = exchangeBytes(gizY2X(tvoc_ppb_RATIO,  tvoc_ppb_ADDITION, dataPoints->valuetvoc_ppb)); 
     devStatusPtr->valuetemp = exchangeBytes(gizY2X(temp_RATIO,  temp_ADDITION, dataPoints->valuetemp)); 
     devStatusPtr->valuepm10_ug = exchangeBytes(gizY2X(pm10_ug_RATIO,  pm10_ug_ADDITION, dataPoints->valuepm10_ug)); 
     devStatusPtr->valuepm2p5_ug = exchangeBytes(gizY2X(pm2p5_ug_RATIO,  pm2p5_ug_ADDITION, dataPoints->valuepm2p5_ug)); 
-    devStatusPtr->valueco_ppm = exchangeBytes(gizY2X(co_ppm_RATIO,  co_ppm_ADDITION, dataPoints->valueco_ppm)); 
     devStatusPtr->valuePtCnt_0p3um = exchangeBytes(gizY2X(PtCnt_0p3um_RATIO,  PtCnt_0p3um_ADDITION, dataPoints->valuePtCnt_0p3um)); 
     devStatusPtr->valuePtCnt_10p0um = exchangeBytes(gizY2X(PtCnt_10p0um_RATIO,  PtCnt_10p0um_ADDITION, dataPoints->valuePtCnt_10p0um)); 
-    devStatusPtr->valueflash_free = exchangeBytes(gizY2X(flash_free_RATIO,  flash_free_ADDITION, dataPoints->valueflash_free)); 
-    devStatusPtr->valueflash_total = exchangeBytes(gizY2X(flash_total_RATIO,  flash_total_ADDITION, dataPoints->valueflash_total)); 
-    devStatusPtr->valuesd_free = exchangeBytes(gizY2X(sd_free_RATIO,  sd_free_ADDITION, dataPoints->valuesd_free)); 
-    devStatusPtr->valuesd_total = exchangeBytes(gizY2X(sd_total_RATIO,  sd_total_ADDITION, dataPoints->valuesd_total)); 
-    devStatusPtr->valuecore_temp = exchangeBytes(gizY2X(core_temp_RATIO,  core_temp_ADDITION, dataPoints->valuecore_temp)); 
 
     devStatusPtr->valuetime_stamp = exchangeWord(gizY2X(time_stamp_RATIO,  time_stamp_ADDITION, dataPoints->valuetime_stamp)); 
 
 
-    gizMemcpy((uint8_t *)devStatusPtr->valuefault_info,(uint8_t *)&dataPoints->valuefault_info,sizeof(dataPoints->valuefault_info));
-    gizMemcpy((uint8_t *)devStatusPtr->valuesoft_version,(uint8_t *)&dataPoints->valuesoft_version,sizeof(dataPoints->valuesoft_version));
-    gizMemcpy((uint8_t *)devStatusPtr->valuewifi_version,(uint8_t *)&dataPoints->valuewifi_version,sizeof(dataPoints->valuewifi_version));
-    gizMemcpy((uint8_t *)devStatusPtr->valuepcb_version,(uint8_t *)&dataPoints->valuepcb_version,sizeof(dataPoints->valuepcb_version));
-    gizMemcpy((uint8_t *)devStatusPtr->valuesn,(uint8_t *)&dataPoints->valuesn,sizeof(dataPoints->valuesn));
     return 0;
 }
 
@@ -989,7 +779,7 @@ static int32_t gizProtocolGetDeviceInfo(protocolHead_t * head)
     memcpy((uint8_t *)deviceInfo.softVer, GIZ_SOFT_VERSION, 8);
     memcpy((uint8_t *)deviceInfo.hardVer, GIZ_HARD_VERSION, 8);
     
-    #if 1
+    #if 0
     memset(deviceInfo.productKey, 0, sizeof(deviceInfo.productKey));
     memset(deviceInfo.productSecret, 0, sizeof(deviceInfo.productSecret));
     strncpy(  (char *)deviceInfo.productKey,      
@@ -1001,6 +791,7 @@ static int32_t gizProtocolGetDeviceInfo(protocolHead_t * head)
                     strlen((char *)PRODUCT_SECRET_STRING())
                );
     #else
+    /*
     strncpy(  (char *)deviceInfo.productKey,      
                    (const char *)PRODUCT_KEY,  
                     strlen((char *)PRODUCT_KEY)
@@ -1009,6 +800,9 @@ static int32_t gizProtocolGetDeviceInfo(protocolHead_t * head)
                   PRODUCT_SECRET, 
                     strlen(PRODUCT_SECRET)
                );
+               */
+    memcpy((uint8_t *)deviceInfo.productKey, PRODUCT_KEY, strlen(PRODUCT_KEY));
+    memcpy((uint8_t *)deviceInfo.productSecret, PRODUCT_SECRET, strlen(PRODUCT_SECRET));
     #endif
 
     GIZWITS_LOG("key:  %s \r\n",  deviceInfo.productKey);
@@ -1501,6 +1295,8 @@ static int8_t gizProtocolModuleInfoHandle(protocolHead_t *head)
     gizwitsProtocol.issuedFlag = GET_MODULEINFO_TYPE;
 
 
+    GIZWITS_LOG("ip = %s \r\n",  moduleInfo->wifiModuleInfo.ip);
+    GIZWITS_LOG("MAC = %s \r\n",  moduleInfo->wifiModuleInfo.mac);
     return 0;
 }
 

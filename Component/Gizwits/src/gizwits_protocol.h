@@ -46,12 +46,12 @@ extern "C" {
 /**@name Product Key  
 * @{
 */
-#define PRODUCT_KEY "5cfb355fd1c44df49db5152cb1104bb8"
+#define PRODUCT_KEY "9a079da9236f4cf78b017a3ccf2222bf"
 /**@} */
 /**@name Product Secret  
 * @{
 */
-#define PRODUCT_SECRET "27e232cf2d4344febbc27e6982e55706"
+#define PRODUCT_SECRET "ff114559c69a4991bd8432938afce38a"
                
 /**@name Device status data reporting interval
 * @{
@@ -86,30 +86,7 @@ extern "C" {
 /**@name Data point related definition
 * @{
 */
-#define Relay_Ctrl_BYTEOFFSET                    0
-#define Relay_Ctrl_BITOFFSET                     0
-#define Relay_Ctrl_LEN                           1
-#define LED0_Ctrl_BYTEOFFSET                    0
-#define LED0_Ctrl_BITOFFSET                     1
-#define LED0_Ctrl_LEN                           1
-#define LCD_Power_En_BYTEOFFSET                    0
-#define LCD_Power_En_BITOFFSET                     2
-#define LCD_Power_En_LEN                           1
-#define Sns_Power_En_BYTEOFFSET                    0
-#define Sns_Power_En_BITOFFSET                     3
-#define Sns_Power_En_LEN                           1
-#define Wifi_Power_En_BYTEOFFSET                    0
-#define Wifi_Power_En_BITOFFSET                     4
-#define Wifi_Power_En_LEN                           1
 
-#define power_mode_RATIO                         1
-#define power_mode_ADDITION                      0
-#define power_mode_MIN                           0
-#define power_mode_MAX                           255
-#define lang_select_RATIO                         1
-#define lang_select_ADDITION                      0
-#define lang_select_MIN                           0
-#define lang_select_MAX                           255
 #define sns_cal_RATIO                         1
 #define sns_cal_ADDITION                      0
 #define sns_cal_MIN                           0
@@ -122,30 +99,22 @@ extern "C" {
 #define humi_ADDITION                      0
 #define humi_MIN                           0
 #define humi_MAX                           255
-#define light_level_RATIO                         1
-#define light_level_ADDITION                      0
-#define light_level_MIN                           0
-#define light_level_MAX                           255
 #define battery_percent_RATIO                         1
 #define battery_percent_ADDITION                      0
 #define battery_percent_MIN                           0
 #define battery_percent_MAX                           255
-#define charge_state_RATIO                         1
-#define charge_state_ADDITION                      0
-#define charge_state_MIN                           0
-#define charge_state_MAX                           255
-#define CO2_RATIO                         1
-#define CO2_ADDITION                      0
-#define CO2_MIN                           0
-#define CO2_MAX                           65535
+#define co2_ppm_RATIO                         1
+#define co2_ppm_ADDITION                      0
+#define co2_ppm_MIN                           0
+#define co2_ppm_MAX                           65535
 #define hcho_ppb_RATIO                         1
 #define hcho_ppb_ADDITION                      0
 #define hcho_ppb_MIN                           0
 #define hcho_ppb_MAX                           65535
 #define tvoc_ppb_RATIO                         1
-#define tvoc_ppb_ADDITION                      1
+#define tvoc_ppb_ADDITION                      0
 #define tvoc_ppb_MIN                           0
-#define tvoc_ppb_MAX                           65534
+#define tvoc_ppb_MAX                           65535
 #define temp_RATIO                         1
 #define temp_ADDITION                      0
 #define temp_MIN                           0
@@ -158,42 +127,16 @@ extern "C" {
 #define pm2p5_ug_ADDITION                      0
 #define pm2p5_ug_MIN                           0
 #define pm2p5_ug_MAX                           65535
-#define co_ppm_RATIO                         1
-#define co_ppm_ADDITION                      0
-#define co_ppm_MIN                           0
-#define co_ppm_MAX                           65535
 #define PtCnt_0p3um_RATIO                         1
 #define PtCnt_0p3um_ADDITION                      0
 #define PtCnt_0p3um_MIN                           0
 #define PtCnt_0p3um_MAX                           65535
 #define PtCnt_10p0um_RATIO                         1
-#define PtCnt_10p0um_ADDITION                      1
+#define PtCnt_10p0um_ADDITION                      0
 #define PtCnt_10p0um_MIN                           0
-#define PtCnt_10p0um_MAX                           65534
-#define flash_free_RATIO                         1
-#define flash_free_ADDITION                      0
-#define flash_free_MIN                           0
-#define flash_free_MAX                           65535
-#define flash_total_RATIO                         1
-#define flash_total_ADDITION                      0
-#define flash_total_MIN                           0
-#define flash_total_MAX                           65535
-#define sd_free_RATIO                         1
-#define sd_free_ADDITION                      0
-#define sd_free_MIN                           0
-#define sd_free_MAX                           65535
-#define sd_total_RATIO                         1
-#define sd_total_ADDITION                      0
-#define sd_total_MIN                           0
-#define sd_total_MAX                           65535
-#define core_temp_RATIO                         1
-#define core_temp_ADDITION                      0
-#define core_temp_MIN                           0
-#define core_temp_MAX                           65535
+#define PtCnt_10p0um_MAX                           65535
 /**@} */
 
-/** Writable data points Boolean and enumerated variables occupy byte size */
-#define COUNT_W_BIT 1
 
 
 
@@ -221,13 +164,6 @@ typedef enum
   WIFI_NTP,                                         ///< Network time event
   MODULE_INFO,                                      ///< Module information event
   TRANSPARENT_DATA,                                 ///< Transparency events
-  EVENT_Relay_Ctrl,
-  EVENT_LED0_Ctrl,
-  EVENT_LCD_Power_En,
-  EVENT_Sns_Power_En,
-  EVENT_Wifi_Power_En,
-  EVENT_power_mode,
-  EVENT_lang_select,
   EVENT_sns_cal,
   EVENT_time_stamp,
   EVENT_TYPE_MAX                                    ///< Enumerate the number of members to calculate (user accidentally deleted)
@@ -391,50 +327,23 @@ typedef enum
 
 /** User Area Device State Structure */
 typedef struct {
-  bool valueRelay_Ctrl;
-  bool valueLED0_Ctrl;
-  bool valueLCD_Power_En;
-  bool valueSns_Power_En;
-  bool valueWifi_Power_En;
-  uint32_t valuepower_mode;
-  uint32_t valuelang_select;
   uint32_t valuesns_cal;
   uint32_t valuetime_stamp;
   uint32_t valuehumi;
-  uint32_t valuelight_level;
   uint32_t valuebattery_percent;
-  uint32_t valuecharge_state;
-  uint32_t valueCO2;
+  uint32_t valueco2_ppm;
   uint32_t valuehcho_ppb;
   uint32_t valuetvoc_ppb;
   uint32_t valuetemp;
   uint32_t valuepm10_ug;
   uint32_t valuepm2p5_ug;
-  uint32_t valueco_ppm;
   uint32_t valuePtCnt_0p3um;
   uint32_t valuePtCnt_10p0um;
-  uint32_t valueflash_free;
-  uint32_t valueflash_total;
-  uint32_t valuesd_free;
-  uint32_t valuesd_total;
-  uint32_t valuecore_temp;
-  uint8_t valuefault_info[16];
-  uint8_t valuesoft_version[16];
-  uint8_t valuewifi_version[8];
-  uint8_t valuepcb_version[8];
-  uint8_t valuesn[16];
 } dataPoint_t;
 
 
 /** Corresponding to the protocol "4.10 WiFi module control device" in the flag " attr_flags" */ 
 typedef struct {
-  uint8_t flagRelay_Ctrl:1;
-  uint8_t flagLED0_Ctrl:1;
-  uint8_t flagLCD_Power_En:1;
-  uint8_t flagSns_Power_En:1;
-  uint8_t flagWifi_Power_En:1;
-  uint8_t flagpower_mode:1;
-  uint8_t flaglang_select:1;
   uint8_t flagsns_cal:1;
   uint8_t flagtime_stamp:1;
 } attrFlags_t;
@@ -443,9 +352,6 @@ typedef struct {
 /** Corresponding protocol "4.10 WiFi module control device" in the data value "attr_vals" */
 
 typedef struct {
-  uint8_t wBitBuf[COUNT_W_BIT];
-  uint8_t valuepower_mode;
-  uint8_t valuelang_select;
   uint8_t valuesns_cal;
   uint32_t valuetime_stamp;
 } attrVals_t;
@@ -459,34 +365,18 @@ typedef struct {
 /** Corresponding protocol "4.9 Device MCU to the WiFi module to actively report the current state" in the device status "dev_status(11B)" */ 
 
 typedef struct {
-  uint8_t wBitBuf[COUNT_W_BIT];
-  uint8_t valuepower_mode;
-  uint8_t valuelang_select;
   uint8_t valuesns_cal;
   uint32_t valuetime_stamp;
   uint8_t valuehumi;
-  uint8_t valuelight_level;
   uint8_t valuebattery_percent;
-  uint8_t valuecharge_state;
-  uint16_t valueCO2;
+  uint16_t valueco2_ppm;
   uint16_t valuehcho_ppb;
   uint16_t valuetvoc_ppb;
   uint16_t valuetemp;
   uint16_t valuepm10_ug;
   uint16_t valuepm2p5_ug;
-  uint16_t valueco_ppm;
   uint16_t valuePtCnt_0p3um;
   uint16_t valuePtCnt_10p0um;
-  uint16_t valueflash_free;
-  uint16_t valueflash_total;
-  uint16_t valuesd_free;
-  uint16_t valuesd_total;
-  uint16_t valuecore_temp;
-  uint8_t valuefault_info[16];
-  uint8_t valuesoft_version[16];
-  uint8_t valuewifi_version[8];
-  uint8_t valuepcb_version[8];
-  uint8_t valuesn[16];
 } devStatus_t; 
 
 

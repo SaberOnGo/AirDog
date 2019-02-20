@@ -140,6 +140,8 @@ void ICON_SetBatPercent(u8 percent, u8 is_charging, u8 reflush)
    E_BOOL draw_bat = E_FALSE;  // 是否需要绘制电池容量
    u16 w = 0;
 
+   // fixed: 充电图标一直提示
+   if(percent >= 98)is_charging = 0;
 
    if((is_charging != last_charging)  || reflush)  // 需要修改充电状态
    {

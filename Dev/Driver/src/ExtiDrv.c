@@ -46,6 +46,7 @@ static void USBDetectTimer_CallBack(void * arg)
 	}
 }
 
+extern void DbgInfo_FreeDisk(void);
 
 static void TimerTFTDispCntDown_CallBack(void * arg)
 {
@@ -63,10 +64,11 @@ static void TimerTFTDispCntDown_CallBack(void * arg)
                                                        os_get_tick() / 100,   sns_left_sec);
                         SET_REG_32_BIT(EXTI->IMR, EXTI_Line_CAPKEY);  // 使能外部中断
                }
+               //DbgInfo_FreeDisk();
          }
          else
          {
-                if(sns_left_sec)
+                if(sns_left_sec < 0xFFFF)
                 {
                       sns_left_sec--;
                       if(sns_left_sec == 0)
@@ -121,7 +123,6 @@ static void TimerCapKeyTrigger_CallBack(void * arg)
                           SnsGUI_DisplayNormal();
                           ADCDrv_DrawBatCapacity(1);
                           #else
-                          sys_wait_up = 1;
                           JumpToBootloader();
                           #endif
                     }

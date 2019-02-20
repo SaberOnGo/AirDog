@@ -713,6 +713,11 @@
               <FileType>1</FileType>
               <FilePath>..\Dev\Driver\src\PWM_TIM5.c</FilePath>
             </File>
+            <File>
+              <FileName>debugfile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Dev\Driver\src\debugfile.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -40,13 +40,16 @@ typedef void (*gizTimerFunc_t)(void *arg );
 //#define GIZWITS_LOG printf                          ///<Run log print
 
 #if 0
-#define GIZWITS_LOG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+//#define GIZWITS_LOG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+
+//extern void DbgInfo_Print(char * fmt,  ...);
+//#define GIZWITS_LOG  dbg_print_detail
 #else
 #define GIZWITS_LOG(...)
 #endif
 
 
-//#define PROTOCOL_DEBUG                              ///<Protocol data print
+#define PROTOCOL_DEBUG                              ///<Protocol data print
 
 #ifndef GIZWITS_LOG_NOFORMAT
 #define GIZWITS_LOG_NOFORMAT printf

@@ -23,7 +23,7 @@
 #define     CO_DBG_EN                0
 #define    TVOC_DBG_EN        0
 #define    HCHO_DBG_EN          0
-#define    CO2_DBG_EN               0
+#define    CO2_DBG_EN               1
 #define  PCF8563_DEBUG_EN   0
 
 #define   PM25_SNS_EN    1
@@ -137,6 +137,7 @@ void q_init(T_ROUND_QUEUE  * q, uint16_t * buf,  uint16_t buf_size);
 
 void Sensor_Init(void);
 void Sensor_PreInit(void);
+
 
 #endif
 

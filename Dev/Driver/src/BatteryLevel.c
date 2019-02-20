@@ -12,7 +12,8 @@
 
 
 #if BAT_DEBUG_EN
-#define BAT_DEBUG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+//#define BAT_DEBUG(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+#define  BAT_DEBUG   dbg_print_detail
 #else
 #define BAT_DEBUG(...)
 #endif
@@ -29,14 +30,19 @@ typedef struct
 static const T_BAT_LEVEL_MAP BatLevMap[] = 
 {
      {0,  3300},   // 0%, 3.300 V: 表示: <= 3.300 V时, 电池电量为 0%
+     {5,  3380},
      {10, 3450},   // 10 %, 3.45 V,
      {25, 3500},   // 25 %, 3.50 V
      {30, 3550},   // 30 %, 3.55 V
      {40, 3600},   // 40 %, 3.60 V
      {50, 3650},   // 50 %, 3.65 V
      {60, 3700},   // 60 %, 3.70 V
+     {70, 3800},
      {80, 3850},   // 80 %, 3.85 V
+     {85, 3950},
      {90, 4050},   // 90 %, 4.05 V
+     {95, 4130},  
+     {98, 4170},
      {100, 4200}, // 100 %, 4.20 V
 };
 
@@ -87,7 +93,10 @@ void BatLev_VoltToPercent(uint16_t bat_volt)
        BAT_DEBUG("bat=%02d%%, pwr dn\n", bat_lev_percent);
 	   
 	   // 关闭传感器
-	   // TODO:
+	   SNS_Ctrl_Set(SW_CLOSE);
+	   LCD_BackLight_Ctrl_Set(SW_CLOSE);
+	   LCD_Ctrl_Set(SW_CLOSE);
+	   WIFI_Power_Ctrl_Close();
    }
 }
 

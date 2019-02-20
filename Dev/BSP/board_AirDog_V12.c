@@ -74,6 +74,7 @@ void Board_GpioInit(void)
 	// SENSOR_Power Ctrl
 	SNS_Ctrl_Set(SW_OPEN);  
 
+
 	
 	
 	
@@ -82,10 +83,13 @@ void Board_GpioInit(void)
        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
        GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_IPD;
 	STM32_GPIO_Init(WIFI_Power_Ctrl_PORT, &GPIO_InitStructure);
-       WIFI_Power_Ctrl_Open();
 
-   //   LCD_BackLight_Ctrl_Set(SW_CLOSE);
-   //   while(1);
+	WIFI_Power_Ctrl_Open();
+
+
+      //SNS_Ctrl_Set(SW_CLOSE);  
+    //  LCD_BackLight_Ctrl_Set(SW_CLOSE);
+    //  while(1);
        // RT_EN 
 	GPIO_InitStructure.GPIO_Pin         = RT_EN_Pin;
        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -96,6 +100,7 @@ void Board_GpioInit(void)
        
        
        // LCD_Power, 屏幕电源开关
+       LCD_Ctrl_Set(SW_OPEN);
        TFT_Ctrl(SW_OPEN);
        
 	// BEEP IO 管脚初始化

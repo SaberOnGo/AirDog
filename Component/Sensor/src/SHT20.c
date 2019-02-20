@@ -9,8 +9,11 @@
 #include "fifo_queue.h"
 
 
+
 #if SHT_DEBUG_EN
-#define SHT_DBG(fmt, ...)    os_printf(fmt, ##__VA_ARGS__)
+#include "debugfile.h"
+//#define SHT_DBG(fmt, ...)   printf(fmt, ##__VA_ARGS__)
+#define  SHT_DBG  dbg_print_detail
 #else
 #define SHT_DBG(...)
 #endif
@@ -307,10 +310,12 @@ void TimerSHT20Sensor_CallBack(void * arg)
 
                                   if(sign < 0)temp = -temp_humi;
                                   else{ temp = temp_humi;  }
+                                  temp -= 200;  // 减去2度
                                   SnsGUI_DisplayTemp(temp);
 
                                   if(sign < 0)temp =- (temp_humi / 10);
                                   else { temp = temp_humi / 10; }
+                                  temp -= 20;  // 减去2度
                                   SDRR_SaveSensorPoint(SENSOR_TEMP, &temp );  // 刷新温度数据点
                           }while(0);
                          

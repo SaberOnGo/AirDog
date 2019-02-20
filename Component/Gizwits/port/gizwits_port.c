@@ -37,38 +37,19 @@ void userInit(void)
 {
         os_memset((uint8_t*)&currentDataPoint, 0, sizeof(dataPoint_t));
     
-    /** Warning !!! DataPoint Variables Init , Must Within The Data Range **/ 
-    
-      currentDataPoint.valueRelay_Ctrl = 0;
-      currentDataPoint.valueLED0_Ctrl = 0;
-      currentDataPoint.valueLCD_Power_En = LCD_Power_En_Status();
-      currentDataPoint.valueSns_Power_En  = SNS_Power_Is_Open();
-      currentDataPoint.valueWifi_Power_En = WIFI_Power_Ctrl_Read();
-      currentDataPoint.valuepower_mode = 1;
-      currentDataPoint.valuelang_select = 0;
       currentDataPoint.valuesns_cal = 0;
       currentDataPoint.valuetime_stamp = RTCDrv_CalendarToSec(1970, &calendar);;
       currentDataPoint.valuehumi = tSDRR.humi;
-      currentDataPoint.valuelight_level = 0;
       currentDataPoint.valuebattery_percent = BatLev_GetPercent();
-      currentDataPoint.valuecharge_state = BatteryIsCharging();
-      currentDataPoint.valueCO2 = tSDRR.co2_ppm;
+      currentDataPoint.valueco2_ppm = tSDRR.co2_ppm;
       currentDataPoint.valuehcho_ppb = tSDRR.hcho_ppb;
       currentDataPoint.valuetvoc_ppb = tSDRR.tvoc_ppb;
       currentDataPoint.valuetemp = tSDRR.temp / 10;
       currentDataPoint.valuepm10_ug = tSDRR.pm10_ug;
       currentDataPoint.valuepm2p5_ug = tSDRR.pm2p5_ug;
-      currentDataPoint.valueco_ppm = tSDRR.co_ppm;
       currentDataPoint.valuePtCnt_0p3um = tSDRR.pm0p3_um;
       currentDataPoint.valuePtCnt_10p0um = tSDRR.pm10_um;
-      currentDataPoint.valueflash_free   = diskInfo[FLASH_DISK].free;
-      currentDataPoint.valueflash_total = diskInfo[FLASH_DISK].total;
-      currentDataPoint.valuesd_free = diskInfo[SD_DISK].free;
-      currentDataPoint.valuesd_total = diskInfo[SD_DISK].total;
-       currentDataPoint.valuecore_temp = tSDRR.core_temp;
 }
-
-
 
 
 /**
@@ -81,39 +62,17 @@ void userInit(void)
 */
 void userHandle(void)
 {
-
+    currentDataPoint.valuetime_stamp = RTCDrv_CalendarToSec(1970, &calendar);;
     currentDataPoint.valuehumi =   tSDRR.humi;//Add Sensor Data Collection
-    currentDataPoint.valuelight_level = 0;//Add Sensor Data Collection
     currentDataPoint.valuebattery_percent = BatLev_GetPercent();//Add Sensor Data Collection
-    currentDataPoint.valuecharge_state = BatteryIsCharging();//Add Sensor Data Collection
-    currentDataPoint.valueCO2 = tSDRR.co2_ppm;//Add Sensor Data Collection
+    currentDataPoint.valueco2_ppm  = tSDRR.co2_ppm;//Add Sensor Data Collection
     currentDataPoint.valuehcho_ppb = tSDRR.hcho_ppb;//Add Sensor Data Collection
     currentDataPoint.valuetvoc_ppb = tSDRR.tvoc_ppb;//Add Sensor Data Collection
     currentDataPoint.valuetemp = tSDRR.temp / 10;//Add Sensor Data Collection
     currentDataPoint.valuepm10_ug = tSDRR.pm10_ug;//Add Sensor Data Collection
     currentDataPoint.valuepm2p5_ug = tSDRR.pm2p5_ug;//Add Sensor Data Collection
-    currentDataPoint.valueco_ppm = tSDRR.co_ppm;//Add Sensor Data Collection
     currentDataPoint.valuePtCnt_0p3um = tSDRR.pm0p3_um;//Add Sensor Data Collection
     currentDataPoint.valuePtCnt_10p0um = tSDRR.pm10_um;//Add Sensor Data Collection
-    currentDataPoint.valueflash_free   = diskInfo[FLASH_DISK].free;//Add Sensor Data Collection
-    currentDataPoint.valueflash_total = diskInfo[FLASH_DISK].total;//Add Sensor Data Collection
-    currentDataPoint.valuesd_free         = diskInfo[SD_DISK].free;    // Add Sensor Data Collection
-    currentDataPoint.valuesd_total        = diskInfo[SD_DISK].total;   // Add Sensor Data Collection
-    currentDataPoint.valuecore_temp = tSDRR.core_temp;//Add Sensor Data Collection
-
-    //XXX is Extend Datapoint Address ,User defined
-    os_strncpy((uint8_t *)currentDataPoint.valuefault_info, "None",   sizeof(currentDataPoint.valuefault_info));
-    //XXX is Extend Datapoint Address ,User defined
-    os_strncpy((uint8_t *)currentDataPoint.valuesoft_version,  SOFT_VERSION, sizeof(currentDataPoint.valuesoft_version));
-    //XXX is Extend Datapoint Address ,User defined
-    os_strncpy((uint8_t *)currentDataPoint.valuewifi_version, "WIFI 0.1",sizeof(currentDataPoint.valuewifi_version));
-    //XXX is Extend Datapoint Address ,User defined
-    os_strncpy((uint8_t *)currentDataPoint.valuepcb_version,  PCB_VERSION,sizeof(currentDataPoint.valuepcb_version));
-    //XXX is Extend Datapoint Address ,User defined
-    os_strncpy((uint8_t *)currentDataPoint.valuesn, "none",sizeof(currentDataPoint.valuesn));
-    
-         
-
 }
 
 /**
@@ -137,26 +96,26 @@ void mcuRestart(void)
 
 os_timer_t tTimerWiFiRoutine;
 
-//static uint8_t enter_wifi_gui = 0;   // æ˜¯å¦è¿›å…¥ WIFI æ˜¾ç¤ºç•Œé¢
-static uint8_t wifi_connect_sta = 0xFF;  // WIFI è¿žæŽ¥çŠ¶æ€: 0: å·²è¿žæŽ¥;  1: æœªè¿žæŽ¥; 2: No Resp
-static uint8_t recv_wifi_ip = 0;         // æ˜¯å¦æŽ¥æ”¶åˆ°WIFI IP:  1: æŽ¥å—åˆ°
-static uint16_t recv_timeout_cnt = 0;   // æŽ¥æ”¶è¶…æ—¶è®¡æ•°ï¼Œ  è¶…è¿‡ 40 sec, WIFI æ— å“åº”, åˆ™ä»»è®¤ä¸ºæ–­ç½‘
+//static uint8_t enter_wifi_gui = 0;   // ÊÇ·ñ½øÈë WIFI ÏÔÊ¾½çÃæ
+static uint8_t wifi_connect_sta = 0xFF;  // WIFI Á¬½Ó×´Ì¬: 0: ÒÑÁ¬½Ó;  1: Î´Á¬½Ó; 2: No Resp
+static uint8_t recv_wifi_ip = 0;         // ÊÇ·ñ½ÓÊÕµ½WIFI IP:  1: ½ÓÊÜµ½
+static uint16_t recv_timeout_cnt = 0;   // ½ÓÊÕ³¬Ê±¼ÆÊý£¬  ³¬¹ý 40 sec, WIFI ÎÞÏìÓ¦, ÔòÈÎÈÏÎª¶ÏÍø
 
 
-// è®¾ç½®ç½‘ç»œè¿žæŽ¥çŠ¶æ€
+// ÉèÖÃÍøÂçÁ¬½Ó×´Ì¬
 void  WIFI_SetConnectStatus(uint8_t conn_sta)
 {
       wifi_connect_sta = conn_sta;
 }
 
 
-// èŽ·å–ç½‘ç»œè¿žæŽ¥çŠ¶æ€
+// »ñÈ¡ÍøÂçÁ¬½Ó×´Ì¬
 uint8_t WIFI_GetConnectStatus(void)
 {
        return wifi_connect_sta;
 }
 
-// è®¾ç½®æŽ¥æ”¶åˆ°IP çŠ¶æ€
+// ÉèÖÃ½ÓÊÕµ½IP ×´Ì¬
 void WIFI_SetIPRecvStatus(uint8_t recv_ip)
 {
      recv_wifi_ip = recv_ip;
@@ -173,7 +132,7 @@ void TimerWiFiRoutine_CallBack(void * arg)
       {
                cnt = 0;
                 recv_timeout_cnt++;
-               if( recv_timeout_cnt % 30 == 0)  // æ¯ 20 sec æŸ¥è¯¢ä¸€æ¬¡
+               if( recv_timeout_cnt % 30 == 0)  // Ã¿ 20 sec ²éÑ¯Ò»´Î
                {
                       GIZWITS_LOG("query wifi  sec = %ld \r\n",  os_get_tick() / 100);
                       gizwitsGetModuleInfo();
@@ -218,7 +177,7 @@ void gizwits_user_init(void)
 #endif
 }
 
-// ä¸»å¾ªçŽ¯ä»»åŠ¡
+// Ö÷Ñ­»·ÈÎÎñ
 void gizwits_user_task(void)
 {
 #if GIZWITS_TYPE == GIZ_MCU
@@ -247,78 +206,6 @@ void gizwits_user_event_process( dataPoint_t * dataPointPtr,  uint8_t event)
        
        switch(event)
        {
-               case EVENT_Relay_Ctrl:
-                currentDataPoint.valueRelay_Ctrl = dataPointPtr->valueRelay_Ctrl;
-                GIZWITS_LOG("Evt: EVENT_Relay_Ctrl %d \n", currentDataPoint.valueRelay_Ctrl);
-                if(0x01 == currentDataPoint.valueRelay_Ctrl)
-                {
-                }
-                else
-                {
-                }
-                break;
-              case EVENT_LED0_Ctrl:
-                currentDataPoint.valueLED0_Ctrl = dataPointPtr->valueLED0_Ctrl;
-                GIZWITS_LOG("Evt: EVENT_LED0_Ctrl %d \n", currentDataPoint.valueLED0_Ctrl);
-                if(0x01 == currentDataPoint.valueLED0_Ctrl)
-                {
-                       LCD_BackLight_Ctrl_Set(SW_OPEN);
-                }
-                else
-                {
-                       LCD_BackLight_Ctrl_Set(SW_CLOSE);
-                }
-                break;
-              case EVENT_LCD_Power_En:
-                currentDataPoint.valueLCD_Power_En = dataPointPtr->valueLCD_Power_En;
-                GIZWITS_LOG("Evt: EVENT_LCD_Power_En %d \n", currentDataPoint.valueLCD_Power_En);
-                if(0x01 == currentDataPoint.valueLCD_Power_En)
-                {
-                           TFT_Ctrl(SW_OPEN);
-
-                           UserGUI_Init();
-                           SnsGUI_DisplayNormal();
-                           ADCDrv_DrawBatCapacity(1);
-                }
-                else
-                {
-                         TFT_Ctrl(SW_CLOSE);
-                }
-                break;
-              case EVENT_Sns_Power_En:
-                currentDataPoint.valueSns_Power_En = dataPointPtr->valueSns_Power_En;
-                GIZWITS_LOG("Evt: EVENT_Sns_Power_En %d \n", currentDataPoint.valueSns_Power_En);
-                if(0x01 == currentDataPoint.valueSns_Power_En)
-                {
-                         SNS_Ctrl_Set(SW_OPEN);
-                }
-                else
-                {
-                        SNS_Ctrl_Set(SW_CLOSE);
-                }
-                break;
-              case EVENT_Wifi_Power_En:
-                currentDataPoint.valueWifi_Power_En = dataPointPtr->valueWifi_Power_En;
-                GIZWITS_LOG("Evt: EVENT_Wifi_Power_En %d \n", currentDataPoint.valueWifi_Power_En);
-                if(0x01 == currentDataPoint.valueWifi_Power_En)
-                {  
-                }
-                else
-                {
-                }
-                break;
-
-
-              case EVENT_power_mode:
-                currentDataPoint.valuepower_mode = dataPointPtr->valuepower_mode;
-                GIZWITS_LOG("Evt:EVENT_power_mode %d\n",currentDataPoint.valuepower_mode);
-                //user handle
-                break;
-              case EVENT_lang_select:
-                currentDataPoint.valuelang_select = dataPointPtr->valuelang_select;
-                GIZWITS_LOG("Evt:EVENT_lang_select %d\n",currentDataPoint.valuelang_select);
-                //user handle
-                break;
               case EVENT_sns_cal:
                 currentDataPoint.valuesns_cal = dataPointPtr->valuesns_cal;
                 GIZWITS_LOG("Evt:EVENT_sns_cal %d\n",currentDataPoint.valuesns_cal);
@@ -338,6 +225,8 @@ void gizwits_user_event_process( dataPoint_t * dataPointPtr,  uint8_t event)
 		            PCF8563_SetDate(cal.year - 2000,  cal.month,  cal.day,  cal.week);
                 }
                 break;
+
+                
         }
 }
 
@@ -393,9 +282,7 @@ void key0_hook(uint8_t key_state)
 		       PWM_TIM5_SetDuty(duty * 100);
 			KEY_DEBUG("S\n");
 			#else
-                     Beep(10,  5000);
-			CO2_StartBackgndCali();
-			SnsGUI_DisplayCO2Tip(TIP_CO2_CALI_ON);
+                     
 			#endif
 		}break;
 	}

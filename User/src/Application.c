@@ -385,7 +385,7 @@ void AppInit(void)
 
        Sensor_PreInit();
        #if (PRINT_SELECT == UART_BLOCK)
-       USART2_Init(115200);   //  usart 2 for debug output
+       USART2_Init(9600);   //  usart 2 for debug output
        #else
        DebugQueue_Init();
        #endif
@@ -447,11 +447,8 @@ void AppInit(void)
        UserGUI_Init();
        UGUI_Demo();
 
-      if(sys_wait_up == 0)
-      {
-            SnsGUI_DisplayVersion(SOFT_VERSION,  __DATE__, __TIME__);
-            Beep_Ctrl();
-       }
+       SnsGUI_DisplayVersion(SOFT_VERSION,  __DATE__, __TIME__);
+       Beep_Ctrl();
        delay_ms(1000);
 #endif
 
@@ -547,5 +544,13 @@ void AppInit(void)
 
    GLOBAL_ENABLE_IRQ();
 #endif
+}
+
+extern void CO2_StartBackgndCali(void);
+void App_StartCO2BackgndCali(void)
+{
+       Beep(10,  5000);
+	CO2_StartBackgndCali();
+	SnsGUI_DisplayCO2Tip(TIP_CO2_CALI_ON);
 }
 
