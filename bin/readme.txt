@@ -22,6 +22,6 @@ AirDog-App-HV1.32 SV1.87.bin   版本修复:
 1  温湿度不能显示的问题
 
 【3】 
-文件名: AirDog-App-HV1.32 SV2.01.bin
-版本号: HV1.32 SV2.01
+文件名: AirDog-App-HV1.32 SV2.02.bin
+版本号: HV1.32 SV2.02
 修复问题: 与 IOS & Android APP 匹配固件
