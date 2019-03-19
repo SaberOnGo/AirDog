@@ -59,7 +59,7 @@ Features/Functions:
 
 12   Supports up to 2A fast charging function to quickly fill the battery.
 
-13   Keep the external interface and connect other sensors such as oxygen, carbon monoxide, etc.
+13   Reserved external interface to connect sensors such as oxygen, carbon monoxide, etc.
 
 14   Scrubed acrylic shell, so addictive ^-^.
 
@@ -86,8 +86,11 @@ https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B
 
 
 
-/------------------------------------------------------------------------------------------------------------------------------/
-AirDog 是一个空气质量检测仪项目，可以检测CO2,甲醛，PM2.5/PM10,VOCs，温湿度等，具有WIFI/GPRS模块，可使用iOS or Android APP 显示/控制。
+/---------------------------------------------------------------------------/
+
+AirDog 是一个空气质量检测仪项目，可以检测CO2,甲醛，PM2.5/PM10,VOCs，温湿度等，
+
+具有WIFI/GPRS模块，可使用iOS or Android APP 显示/控制。
 
 传感器:
 
@@ -148,15 +151,22 @@ WIFI模块: ESP-8266
 资源:
 1 WIFI: 
 
-本人编译的SDK 本身: https://github.com/SaberOnGo/ESP8266-AIRDOG
+笔者编译的SDK: 
+
+https://github.com/SaberOnGo/ESP8266-AIRDOG
+
+
 
 ESP8266(ie: ai-thinker ESP-12F, esp8266 with 32Mbit SPI FLASH)
 
 安信可文档中心
+
 http://wiki.ai-thinker.com/esp8266/docs
 
 
 ESP8266 SDK and resources on Espressif:
+
 乐鑫原厂SDK:
+
 https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
 
