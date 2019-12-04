@@ -7,8 +7,21 @@ It can detect carbon dioxide(CO2) , formaldehyde, VOCs/Volatile Organic Compound
 TVOC/Total Volatile Organic Compound, PM2.5/PM10/PM0.3, Temperature, humidity in the air.
 
 
-sensors: 
+Compile Environment:   Keil MDK-ARM 5.21a
+bootloader address:    0x8000000 ~  0x8007FFF(see directory: ./bin/Booloader bin file/)
+application address:   0x8008000 ~  0x803FFFF
 
+AirDog Disk Config File(see directory: ./doc/disk config file/ )
+./font/22.bin
+./sensor
+./update
+./config.txt
+./default
+./system
+
+
+
+sensors: 
 CO2  :  Sweden SenseAir LTD, S8 0053 CO2 Sensor
 
 Formaldehyde: England DART SENSORS LTD, WZ-S Module
@@ -91,6 +104,21 @@ https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B
 AirDog 是一个空气质量检测仪项目，可以检测CO2,甲醛，PM2.5/PM10,VOCs，温湿度等，
 
 具有WIFI/GPRS模块，可使用iOS or Android APP 显示/控制。
+
+
+编译环境:   Keil MDK-ARM 5.21a
+bootloader 地址:    0x8000000 ~  0x8007FFF(boot 文件在目录: ./bin/Booloader bin file/)
+应用程序地址:        0x8008000 ~  0x803FFFF
+
+空气狗配置文件在目录：./doc/disk config file/ 
+包括以下：
+./font/22.bin
+./sensor
+./update
+./config.txt
+./default
+./system
+
 
 传感器:
 
