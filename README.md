@@ -7,6 +7,8 @@ It can detect carbon dioxide(CO2) , formaldehyde, VOCs/Volatile Organic Compound
 TVOC/Total Volatile Organic Compound, PM2.5/PM10/PM0.3, Temperature, humidity in the air.
 
 
+A Stronger Open Source Air Quality Project than AirDog: AirWolf is here: https://github.com/SaberOnGo/AirWolf
+
 
 Compile Environment:   Keil MDK-ARM 5.21a
 
@@ -89,18 +91,19 @@ resources:
 
 1 WIFI: 
 
-my ESP8266 sdk in: https://github.com/SaberOnGo/ESP8266-AIRDOG
+	my ESP8266 sdk in: https://github.com/SaberOnGo/ESP8266-AIRDOG
 
-ESP8266(ie: ai-thinker ESP-12F, esp8266 with 32Mbit SPI FLASH)
+	ESP8266(ie: ai-thinker ESP-12F, esp8266 with 32Mbit SPI FLASH)
 
-http://wiki.ai-thinker.com/esp8266/docs
+	http://wiki.ai-thinker.com/esp8266/docs
 
-ESP8266 SDK and resources on Espressif:
+2 ESP8266 SDK and resources on Espressif:
 
-https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
+	https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
 
 
-
+3 Android & iOS APP:
+	https://github.com/SaberOnGo/AIRDOG-APP
 
 
 
@@ -212,4 +215,8 @@ ESP8266 SDK and resources on Espressif:
 乐鑫原厂SDK:
 
 https://www.espressif.com/en/support/download/sdks-demos?keys=&field_type_tid%5B%5D=14
+
+
+Android & iOS APP:
+      https://github.com/SaberOnGo/AIRDOG-APP
 
