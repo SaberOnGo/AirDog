@@ -115,6 +115,8 @@ AirDog 是一个空气质量检测仪项目，可以检测CO2,甲醛，PM2.5/PM1
 具有WIFI/GPRS模块，可使用iOS or Android APP 显示/控制。
 
 
+比“空气狗”更强的开源项目： “空气狼” 在这里: https://github.com/SaberOnGo/AirWolf
+
 
 
 编译环境:   Keil MDK-ARM 5.21a
